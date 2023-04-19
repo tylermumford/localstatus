@@ -7,6 +7,7 @@ Automatically monitors the important parts of your local development environment
 
 ```
 $ brock
+    6 checks to run...
 OK  Database service
 OK  Database migrations
 OK  API service
@@ -14,6 +15,10 @@ OK  Env vars
 !   VPN connection
 OK  Redis
 ( exit code 1 )
+
+$ brock --watch
+    6 checks to run, every 3 minutes...
+    (Enter to re-run, Ctrl-C to stop)
 ```
 
 The configuration looks like this:
