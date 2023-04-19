@@ -2,8 +2,14 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/tylermumford/friendly-broccoli/brock"
+)
 
 func main() {
 	fmt.Println("Hello!")
+
+	brock.Run()
 }
