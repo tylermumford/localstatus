@@ -53,5 +53,8 @@ func parseToml(conf *RunConfig) error {
 		return err
 	}
 
+	fmt.Printf("Parsed: %+v", main)
+	conf.Main = &main
+
 	return nil
 }
