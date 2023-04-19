@@ -21,11 +21,11 @@ The configuration looks like this:
 ```toml
 # brock_checks.toml
 health_checks = [
-    {check: "brock.database.up", connection: "localhost:3306"},
-    {check: "brock.database.migrated", tool: "flyway", directory: "~/dev/proj/db"},
-    {check: "brock.http.ok", url: "http://localhost:9000/api/ping", label: "API server"},
-    {check: "brock.env", variables_required: ["API_KEY", "ENVIRONMENT_MODE"]},
-    {check: "brock.http.ok", url: "https://corp.private.example.com", label: "VPN connection"},
-    {check: "brock.redis.up", connection: "localhost:6379"},
+    {check = "brock.database.up", connection = "localhost:3306"},
+    {check = "brock.database.migrated", tool = "flyway", directory = "~/dev/proj/db"},
+    {check = "brock.http.ok", url = "http://localhost:9000/api/ping", label = "API server"},
+    {check = "brock.env", variables_required = ["API_KEY", "ENVIRONMENT_MODE"]},
+    {check = "brock.http.ok", url = "https://corp.private.example.com", label = "VPN connection"},
+    {check = "brock.redis.up", connection = "localhost:6379"},
 ]
 ```
