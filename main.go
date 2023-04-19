@@ -4,12 +4,15 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/tylermumford/friendly-broccoli/brock"
 )
 
 func main() {
-	fmt.Println("Hello!")
-
-	brock.Run()
+	err := brock.Run()
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
 }

@@ -24,7 +24,7 @@ $ brock --watch
 The configuration looks like this:
 
 ```toml
-# brock_checks.toml
+# ~/brock_checks.toml
 health_checks = [
     {check = "brock.database.up", connection = "localhost:3306"},
     {check = "brock.database.migrated", tool = "flyway", directory = "~/dev/proj/db"},
