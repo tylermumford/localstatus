@@ -3,6 +3,11 @@
 Automatically monitors the important parts of your local development environment. Not in a fancy way.
 Just in a fifteen-year-old-Honda-Civic kind of way.
 
+* Ping your local services
+* Verify needed files exist
+* Keep an eye on Git repos
+* and more
+
 ## Example
 
 ```
