@@ -15,6 +15,14 @@ func (c *CheckRegistry) Add(key string, check Check) {
 	c.entries[key] = check
 }
 
+func (c *CheckRegistry) Get(key string) Check {
+	result := c.entries[key]
+	if result == nil {
+		panic("getting unregistered check '" + key + "'")
+	}
+	return result
+}
+
 func (c *CheckRegistry) AddAllChecks() {
 	c.Add("brock.http.ok", BrockHttpOk{})
 }

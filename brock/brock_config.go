@@ -4,5 +4,10 @@ package brock
 
 // Holds the data parsed from the TOML configuration file. Very important.
 type BrockConfig struct {
-	Thing int
+	Checks []Definition
+}
+
+type Definition struct {
+	Check string
+	Url   string
 }

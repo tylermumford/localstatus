@@ -22,5 +22,5 @@ func (b BrockHttpOk) Run(options map[string]any) (CheckResult, error) {
 		return newBasicResult(false, "not ok: "+strconv.Itoa(response.StatusCode)), nil
 	}
 
-	return newBasicResult(true, "200 OK"), nil
+	return newBasicResult(true, options["url"].(string)), nil
 }

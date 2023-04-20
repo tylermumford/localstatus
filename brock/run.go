@@ -12,9 +12,11 @@ import (
 )
 
 // Runs the program. This is called from the main package.
+// Any error should be displayed to the user.
 func Run() error {
 	fmt.Println("Running brock")
 
+	// 1. Determine path to config file
 	home, err := os.UserHomeDir()
 	if err != nil {
 		return fmt.Errorf("cannot determine home dir: %w", err)
@@ -25,14 +27,7 @@ func Run() error {
 		TomlPath: tomlPath, // [1]
 	}
 
-	return innerRun(conf)
-}
-
-// [1] This should match the Readme example.
-
-func innerRun(conf RunConfig) error {
-	fmt.Printf("Running with toml %v\n", conf.TomlPath)
-
+	// 2. Read and parse
 	tomlBytes, err := os.ReadFile(conf.TomlPath)
 	if err != nil {
 		return fmt.Errorf("cannot get toml from %v: %w", conf.TomlPath, err)
@@ -44,11 +39,42 @@ func innerRun(conf RunConfig) error {
 		return fmt.Errorf("cannot parse toml: %w", err)
 	}
 
+	// 3. Prepare code for checks
 	conf.Registry = checks.NewCheckRegistry()
 	conf.Registry.AddAllChecks()
 
+	// 4. Run the specified checks
+	fmt.Printf("    %d checks to run...\n", len(conf.Main.Checks))
+	for v := range conf.Main.Checks {
+		result, err := runCheckDefinition(conf.Main.Checks[v], &conf)
+
+		var prefix string
+		var message string
+		if err != nil {
+			prefix = "! "
+			message = err.Error()
+		} else if !result.IsOkay() {
+			prefix = "! "
+			message = result.Label()
+		} else {
+			prefix = "OK"
+			message = result.Label()
+		}
+
+		fmt.Printf("%s  %s\n", prefix, message)
+	}
+
 	return nil
 }
+
+func runCheckDefinition(def Definition, conf *RunConfig) (checks.CheckResult, error) {
+	name := def.Check
+	check := conf.Registry.Get(name)
+	options := map[string]any{"url": def.Url}
+	return check.Run(options)
+}
+
+// [1] This should match the Readme example.
 
 func parseToml(conf *RunConfig) error {
 	main := BrockConfig{}
@@ -57,7 +83,7 @@ func parseToml(conf *RunConfig) error {
 		return err
 	}
 
-	fmt.Printf("Parsed: %+v", main)
+	fmt.Printf("Parsed: %+v\n", main)
 	conf.Main = &main
 
 	return nil
