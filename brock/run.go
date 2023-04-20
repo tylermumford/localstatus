@@ -23,30 +23,30 @@ func Run() error {
 	}
 
 	tomlPath := path.Join(home, "brock_checks.toml")
-	conf := RunConfig{
+	ctx := RunContext{
 		TomlPath: tomlPath, // [1]
 	}
 
 	// 2. Read and parse
-	tomlBytes, err := os.ReadFile(conf.TomlPath)
+	tomlBytes, err := os.ReadFile(ctx.TomlPath)
 	if err != nil {
-		return fmt.Errorf("cannot get toml from %v: %w", conf.TomlPath, err)
+		return fmt.Errorf("cannot get toml from %v: %w", ctx.TomlPath, err)
 	}
 
-	conf.TomlBytes = tomlBytes
-	err = parseToml(&conf)
+	ctx.TomlBytes = tomlBytes
+	err = parseToml(&ctx)
 	if err != nil {
 		return fmt.Errorf("cannot parse toml: %w", err)
 	}
 
 	// 3. Prepare code for checks
-	conf.Registry = checks.NewCheckRegistry()
-	conf.Registry.AddAllChecks()
+	ctx.Registry = checks.NewCheckRegistry()
+	ctx.Registry.AddAllChecks()
 
 	// 4. Run the specified checks
-	fmt.Printf("    %d checks to run...\n", len(conf.Main.Checks))
-	for v := range conf.Main.Checks {
-		result := runCheckDefinition(conf.Main.Checks[v], &conf)
+	fmt.Printf("    %d checks to run...\n", len(ctx.Config.Checks))
+	for v := range ctx.Config.Checks {
+		result := runCheckDefinition(ctx.Config.Checks[v], &ctx)
 
 		var prefix string
 		var message string
@@ -64,7 +64,7 @@ func Run() error {
 	return nil
 }
 
-func runCheckDefinition(def Definition, conf *RunConfig) checks.CheckResult {
+func runCheckDefinition(def Definition, conf *RunContext) checks.CheckResult {
 	name := def.Check
 	check := conf.Registry.Get(name)
 	options := map[string]any{"url": def.Url}
@@ -73,7 +73,7 @@ func runCheckDefinition(def Definition, conf *RunConfig) checks.CheckResult {
 
 // [1] This should match the Readme example.
 
-func parseToml(conf *RunConfig) error {
+func parseToml(conf *RunContext) error {
 	main := BrockConfig{}
 	_, err := toml.Decode(string(conf.TomlBytes), &main)
 	if err != nil {
@@ -81,7 +81,7 @@ func parseToml(conf *RunConfig) error {
 	}
 
 	fmt.Printf("Parsed: %+v\n", main)
-	conf.Main = &main
+	conf.Config = &main
 
 	return nil
 }
