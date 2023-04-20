@@ -5,22 +5,26 @@ import (
 	"strconv"
 )
 
-type BrockHttpOk struct {
-}
+type BrockHttpOk struct{}
 
-var _ Check = BrockHttpOk{}
+var _ Check = BrockHttpOk{} // just confirming it implements the interface
 
 // Sends an HTTP GET request and expects 200 OK.
 // Options: url, label
-func (b BrockHttpOk) Run(options map[string]any) CheckResult {
-	response, err := http.DefaultClient.Get(options["url"].(string))
+func (b BrockHttpOk) Run(options Params) CheckResult {
+	url := options.GetString("url")
+	response, err := http.DefaultClient.Get(url)
 	if err != nil {
-		return newBasicResult(false, "error: "+err.Error())
+		return newBasicResult(false, err.Error()) // [1]
 	}
 
 	if response.StatusCode != 200 {
 		return newBasicResult(false, "not ok: "+strconv.Itoa(response.StatusCode))
 	}
 
-	return newBasicResult(true, options["url"].(string))
+	return newBasicResult(true, url)
 }
+
+// [1] Normally, I'd add more information about the error, but
+// Go errors already include a ton of information. If anything,
+// it should be shortened.

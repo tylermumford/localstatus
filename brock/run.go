@@ -64,11 +64,10 @@ func Run() error {
 	return nil
 }
 
-func runCheckDefinition(def Definition, conf *RunContext) checks.CheckResult {
-	name := def.Check
+func runCheckDefinition(p checks.Params, conf *RunContext) checks.CheckResult {
+	name := p.GetString("check")
 	check := conf.Registry.Get(name)
-	options := map[string]any{"url": def.Url}
-	return check.Run(options)
+	return check.Run(p)
 }
 
 // [1] This should match the Readme example.

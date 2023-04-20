@@ -18,11 +18,12 @@ func (c *CheckRegistry) Add(key string, check Check) {
 func (c *CheckRegistry) Get(key string) Check {
 	result := c.entries[key]
 	if result == nil {
-		panic("getting unregistered check '" + key + "'")
+		panic("get check with key '" + key + "': not found")
 	}
 	return result
 }
 
 func (c *CheckRegistry) AddAllChecks() {
 	c.Add("brock.http.ok", BrockHttpOk{})
+	c.Add("brock.env", BrockEnv{})
 }
