@@ -1,6 +1,6 @@
 // This file is for the TOML handling.
 
-package brock
+package localstatus
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ func Run() error {
 		return fmt.Errorf("cannot determine home dir: %w", err)
 	}
 
-	tomlPath := path.Join(home, "brock_checks.toml")
+	tomlPath := path.Join(home, ".config", "localstatus.toml")
 	ctx := RunContext{
 		TomlPath: tomlPath, // [1]
 	}
@@ -71,7 +71,7 @@ func runCheckDefinition(p checks.Params, conf *RunContext) checks.CheckResult {
 // [1] This should match the Readme example.
 
 func parseToml(conf *RunContext) error {
-	main := BrockConfig{}
+	main := GatheredConfig{}
 	_, err := toml.Decode(string(conf.TomlBytes), &main)
 	if err != nil {
 		return err

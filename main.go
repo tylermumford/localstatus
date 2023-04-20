@@ -1,4 +1,4 @@
-// brock is a tool for automatically monitoring your local dev environment.
+// localstatus is a tool for automatically monitoring your local dev environment.
 
 package main
 
@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/tylermumford/friendly-broccoli/brock"
+	"github.com/tylermumford/friendly-broccoli/localstatus"
 )
 
 func main() {
-	err := brock.Run()
+	err := localstatus.Run()
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)

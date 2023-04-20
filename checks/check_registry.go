@@ -24,7 +24,7 @@ func (c *CheckRegistry) Get(key string) Check {
 }
 
 func (c *CheckRegistry) AddAllChecks() {
-	c.Add("brock.http.ok", BrockHttpOk{})
-	c.Add("brock.env", BrockEnv{})
-	c.Add("brock.tcp.open", BrockTcpOpen{})
+	c.Add("http.ok", CheckHttpOk{})
+	c.Add("env", CheckEnv{})
+	c.Add("tcp.open", CheckTcpOpen{})
 }

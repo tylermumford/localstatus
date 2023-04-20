@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-type BrockTcpOpen struct{}
+type CheckTcpOpen struct{}
 
-func (b BrockTcpOpen) Run(options Params) CheckResult {
+func (b CheckTcpOpen) Run(options Params) CheckResult {
 	addr := options.GetString("address")
 	label := options.GetString("label")
 	var subject string

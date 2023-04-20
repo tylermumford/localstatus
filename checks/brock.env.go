@@ -6,9 +6,9 @@ import (
 	"strings"
 )
 
-type BrockEnv struct{}
+type CheckEnv struct{}
 
-func (b BrockEnv) Run(p Params) CheckResult {
+func (b CheckEnv) Run(p Params) CheckResult {
 	required := p.GetStrings("variables_required")
 	unsetVars := []string{}
 

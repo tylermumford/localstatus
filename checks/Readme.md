@@ -1,8 +1,7 @@
-# Brock checks
+# LocalStatus checks
 
-This Go package is for all of the checks that brock can perform.
-Each check is named with a loose hierarchy, and most (maybe all)
-start with `brock`.
+This Go package is for all of the checks that localstatus can perform.
+Each check is named with a loose hierarchy.
 
 Checks conform to the `Check` interface, which is defined in
 the `check.go` file.

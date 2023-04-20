@@ -5,13 +5,13 @@ import (
 	"strconv"
 )
 
-type BrockHttpOk struct{}
+type CheckHttpOk struct{}
 
-var _ Check = BrockHttpOk{} // just confirming it implements the interface
+var _ Check = CheckHttpOk{} // just confirming it implements the interface
 
 // Sends an HTTP GET request and expects 200 OK.
 // Options: url, label
-func (b BrockHttpOk) Run(options Params) CheckResult {
+func (b CheckHttpOk) Run(options Params) CheckResult {
 	url := options.GetString("url")
 	response, err := http.DefaultClient.Get(url)
 	if err != nil {

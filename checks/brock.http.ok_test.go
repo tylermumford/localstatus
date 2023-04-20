@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestBrockHttpOk(t *testing.T) {
+func TestCheckHttpOk(t *testing.T) {
 	http.HandleFunc("/ping", func(res http.ResponseWriter, req *http.Request) {
 		res.Write([]byte("Okay"))
 	})
@@ -13,7 +13,7 @@ func TestBrockHttpOk(t *testing.T) {
 	go temp.ListenAndServe()
 	defer temp.Close()
 
-	ok := BrockHttpOk{}
+	ok := CheckHttpOk{}
 	result := ok.Run(map[string]any{"url": "http://localhost:9871/ping"})
 
 	if result.IsOkay() == false {
