@@ -35,6 +35,17 @@ checks = [
 ]
 ```
 
+## Motivation
+
+At work, my local development environment needs to be _just so._ I need to remember to connect to
+the VPN, run the Azurite cloud storage emulator, and check the local status pages of about twelve
+services in case one of them has a problem. I need to make sure my repositories aren't falling too
+far behind my team, my database has the latest migrations, and I've run `npm install` since the
+last update to `package.json`. And there are local files that need to exist even though they aren't
+checked in to source control.
+
+That's a lot of moving pieces, so of course, I created a tool to check them all for me.
+
 ## Trivia
 
 - This project was almost named Brock, because GitHub generated a repo name of "friendly-broccoli."
