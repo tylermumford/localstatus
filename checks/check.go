@@ -4,7 +4,7 @@ package checks
 // Common examples include checking a URL for HTTP 200 OK, checking a local
 // database service, and running scripts that do custom checks.
 type Check interface {
-	Run(options map[string]any) (CheckResult, error)
+	Run(options map[string]any) CheckResult
 }
 
 // Reports what happened when a Check was run.

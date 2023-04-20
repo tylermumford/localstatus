@@ -14,11 +14,7 @@ func TestBrockHttpOk(t *testing.T) {
 	defer temp.Close()
 
 	ok := BrockHttpOk{}
-	result, err := ok.Run(map[string]any{"url": "http://localhost:9871/ping"})
-
-	if err != nil {
-		t.Fatal(err)
-	}
+	result := ok.Run(map[string]any{"url": "http://localhost:9871/ping"})
 
 	if result.IsOkay() == false {
 		t.Fatalf("should have been true, but: %s", result.Label())

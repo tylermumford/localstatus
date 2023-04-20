@@ -12,15 +12,15 @@ var _ Check = BrockHttpOk{}
 
 // Sends an HTTP GET request and expects 200 OK.
 // Options: url, label
-func (b BrockHttpOk) Run(options map[string]any) (CheckResult, error) {
+func (b BrockHttpOk) Run(options map[string]any) CheckResult {
 	response, err := http.DefaultClient.Get(options["url"].(string))
 	if err != nil {
-		return newBasicResult(false, "error: "+err.Error()), nil
+		return newBasicResult(false, "error: "+err.Error())
 	}
 
 	if response.StatusCode != 200 {
-		return newBasicResult(false, "not ok: "+strconv.Itoa(response.StatusCode)), nil
+		return newBasicResult(false, "not ok: "+strconv.Itoa(response.StatusCode))
 	}
 
-	return newBasicResult(true, options["url"].(string)), nil
+	return newBasicResult(true, options["url"].(string))
 }

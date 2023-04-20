@@ -46,14 +46,11 @@ func Run() error {
 	// 4. Run the specified checks
 	fmt.Printf("    %d checks to run...\n", len(conf.Main.Checks))
 	for v := range conf.Main.Checks {
-		result, err := runCheckDefinition(conf.Main.Checks[v], &conf)
+		result := runCheckDefinition(conf.Main.Checks[v], &conf)
 
 		var prefix string
 		var message string
-		if err != nil {
-			prefix = "! "
-			message = err.Error()
-		} else if !result.IsOkay() {
+		if !result.IsOkay() {
 			prefix = "! "
 			message = result.Label()
 		} else {
@@ -67,7 +64,7 @@ func Run() error {
 	return nil
 }
 
-func runCheckDefinition(def Definition, conf *RunConfig) (checks.CheckResult, error) {
+func runCheckDefinition(def Definition, conf *RunConfig) checks.CheckResult {
 	name := def.Check
 	check := conf.Registry.Get(name)
 	options := map[string]any{"url": def.Url}
