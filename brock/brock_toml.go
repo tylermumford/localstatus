@@ -8,6 +8,7 @@ import (
 	"path"
 
 	"github.com/BurntSushi/toml"
+	"github.com/tylermumford/friendly-broccoli/checks"
 )
 
 // Runs the program. This is called from the main package.
@@ -42,6 +43,9 @@ func innerRun(conf RunConfig) error {
 	if err != nil {
 		return fmt.Errorf("cannot parse toml: %w", err)
 	}
+
+	conf.Registry = checks.NewCheckRegistry()
+	conf.Registry.AddAllChecks()
 
 	return nil
 }

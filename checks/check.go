@@ -1,4 +1,4 @@
-package brock
+package checks
 
 // Implements something that can be checked in the local dev environment.
 // Common examples include checking a URL for HTTP 200 OK, checking a local
@@ -11,4 +11,21 @@ type Check interface {
 type CheckResult interface {
 	IsOkay() bool
 	Label() string
+}
+
+type basicResult struct {
+	okay  bool
+	label string
+}
+
+func (b basicResult) IsOkay() bool {
+	return b.okay
+}
+
+func (b basicResult) Label() string {
+	return b.label
+}
+
+func newBasicResult(okay bool, label string) CheckResult {
+	return basicResult{okay: okay, label: label}
 }

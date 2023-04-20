@@ -1,4 +1,4 @@
-package brock
+package checks
 
 // Holds a bunch of Checks, and can dish them out based on string keys.
 type CheckRegistry struct {
@@ -13,4 +13,8 @@ func NewCheckRegistry() *CheckRegistry {
 
 func (c *CheckRegistry) Add(key string, check Check) {
 	c.entries[key] = check
+}
+
+func (c *CheckRegistry) AddAllChecks() {
+	c.Add("brock.http.ok", BrockHttpOk{})
 }

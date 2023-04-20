@@ -1,12 +1,26 @@
 package checks
 
-import "github.com/tylermumford/friendly-broccoli/brock"
+import (
+	"net/http"
+	"strconv"
+)
 
 type BrockHttpOk struct {
 }
 
-var _ brock.Check = BrockHttpOk{}
+var _ Check = BrockHttpOk{}
 
-func (b BrockHttpOk) Run(options map[string]any) (brock.CheckResult, error) {
-	panic("unimplmemented")
+// Sends an HTTP GET request and expects 200 OK.
+// Options: url, label
+func (b BrockHttpOk) Run(options map[string]any) (CheckResult, error) {
+	response, err := http.DefaultClient.Get(options["url"].(string))
+	if err != nil {
+		return newBasicResult(false, "error: "+err.Error()), nil
+	}
+
+	if response.StatusCode != 200 {
+		return newBasicResult(false, "not ok: "+strconv.Itoa(response.StatusCode)), nil
+	}
+
+	return newBasicResult(true, "200 OK"), nil
 }
