@@ -14,8 +14,6 @@ import (
 // Runs the program. This is called from the main package.
 // Any error should be displayed to the user.
 func Run() error {
-	fmt.Println("Running brock")
-
 	// 1. Determine path to config file
 	home, err := os.UserHomeDir()
 	if err != nil {
@@ -79,7 +77,6 @@ func parseToml(conf *RunContext) error {
 		return err
 	}
 
-	fmt.Printf("Parsed: %+v\n", main)
 	conf.Config = &main
 
 	return nil
