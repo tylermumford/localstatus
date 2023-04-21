@@ -40,16 +40,49 @@ checks = [
 ]
 ```
 
-## Motivation
+## Installing
+
+On macOS and Windows, use Homebrew or Scoop to easiliy install LocalStatus.
+
+```
+brew install localstatus
+```
+
+```
+scoop install localstatus
+```
+
+## Motivation / Rant
 
 At work, my local development environment needs to be _just so._ I need to remember to connect to
-the VPN, run the Azurite cloud storage emulator, and check the local status pages of about twelve
+the VPN, run the cloud storage emulator, and check the local status pages of about twelve
 services in case one of them has a problem. I need to make sure my repositories aren't falling too
 far behind my team, my database has the latest migrations, and I've run `npm install` since the
 last update to `package.json`. And there are local files that need to exist even though they aren't
 checked in to source control.
 
 That's a lot of moving pieces, so of course, I created a tool to check them all for me.
+
+Also, I'm just saddened by the trend I've been seeing with more and more systems only being runnable
+in the cloud. If your system doesn't work locally, then you can't do anything when your Internet
+goes down, or your cloud provider goes down, or your IT department can't get you access to something
+right away. In other words, local development is a "cause" I believe in.
+
+## Contributing
+
+To show your interest, you can star the repository or send me a message via Mastodon.
+
+I am open to bug reports in GitHub Issues. Please use Discussions for feature requests and general
+discussions/questions/support. I am open to PRs. I'm not looking for other contributors right now.
+
+To help "pay for" this project, consider purchasing the macOS/Windows companion apps.
+
+## Disclosure
+
+I'm creating this project because I think it needs to exist. I use something similar at work already.
+But I'm also planning to create some paid macOS and Windows companion apps that will integrate with
+LocalStatus. Those will most likely be closed source. I don't want to sell the project. My hope is
+to create something of value that can earn some money.
 
 ## Trivia
 
