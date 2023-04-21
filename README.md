@@ -8,8 +8,8 @@ Just in a fifteen-year-old-Honda-Civic kind of way.
 * Keep an eye on Git repos
 * and more
 
-This is a work in progress. Consider it version 0.1. I'm hoping for lots of feedback and,
-of course, GitHub stars. 😅
+This is a work in progress. Consider it version 0.1. I'm hoping for thoughtful feedback and,
+of course, GitHub stars. 😅 External validation for the win!
 
 ## Example (Aspirational)
 
