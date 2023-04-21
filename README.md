@@ -8,7 +8,8 @@ Just in a fifteen-year-old-Honda-Civic kind of way.
 * Keep an eye on Git repos
 * and more
 
-This is a work in progress. Consider it version 0.1.
+This is a work in progress. Consider it version 0.1. I'm hoping for lots of feedback and,
+of course, GitHub stars. 😅
 
 ## Example (Aspirational)
 
@@ -50,6 +51,8 @@ For now, download source code and run `go install`.
 
 ## Motivation / Rant
 
+😵‍💫
+
 At work, my local development environment needs to be _just so._ I need to remember to connect to
 the VPN, run the cloud storage emulator, and check the local status pages of about twelve
 services in case one of them has a problem. I need to make sure my repositories aren't falling too
@@ -71,7 +74,7 @@ To show your interest, you can star the repository or send me a message via Mast
 I am open to bug reports in GitHub Issues. Please use Discussions for feature requests and general
 discussions/questions/support. I am open to PRs. I'm not looking for other contributors right now.
 
-To help "pay for" this project, consider purchasing the macOS/Windows companion apps.
+To help "pay for" this project, consider purchasing the macOS/Windows companion apps. (Eventually. They don't exist yet.)
 
 ## Disclosure
 
