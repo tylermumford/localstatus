@@ -8,17 +8,21 @@ Just in a fifteen-year-old-Honda-Civic kind of way.
 * Keep an eye on Git repos
 * and more
 
-## Example
+This is a work in progress. Consider it version 0.1.
+
+## Example (Aspirational)
+
+The real output and config are similar to this, but not exactly the same. I'm still
+figuring out the design.
 
 ```
 $ localstatus
     6 checks to run...
-OK  Database service
-OK  Database migrations
-OK  API service
-OK  Env vars
-!   VPN connection
+OK  MySQL
 OK  Redis
+OK  API server
+!   Env vars
+OK  VPN connection
 ( exit code 1 )
 
 $ localstatus --watch
@@ -33,7 +37,6 @@ The configuration looks like this:
 checks = [
     {check = "tcp.open", address = "localhost:3306", label = "MySQL"},
     {check = "tcp.open", address = "localhost:6379", label = "Redis"},
-    {check = "database.migrated", tool = "flyway", directory = "~/dev/proj/db"},
     {check = "http.ok", url = "http://localhost:9000/api/ping", label = "API server"},
     {check = "env", variables_required = ["API_KEY", "ENVIRONMENT_MODE"]},
     {check = "http.ok", url = "https://corp.private.example.com", label = "VPN connection"},
@@ -42,15 +45,8 @@ checks = [
 
 ## Installing
 
-On macOS and Windows, use Homebrew or Scoop to easiliy install LocalStatus.
-
-```
-brew install localstatus
-```
-
-```
-scoop install localstatus
-```
+I intend to make this easy to install with Scoop and Homebrew, but it's not quite ready.
+For now, download source code and run `go install`.
 
 ## Motivation / Rant
 
@@ -83,6 +79,9 @@ I'm creating this project because I think it needs to exist. I use something sim
 But I'm also planning to create some paid macOS and Windows companion apps that will integrate with
 LocalStatus. Those will most likely be closed source. I don't want to sell the project. My hope is
 to create something of value that can earn some money.
+
+This is my first open source project that I actually hope lots of people will use. But again, it's
+my first, so please bear with me as I figure this out. 💛
 
 ## Trivia
 

@@ -1,6 +1,6 @@
 // This file is for the TOML handling.
 
-package localstatus
+package app
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"path"
 
 	"github.com/BurntSushi/toml"
-	"github.com/tylermumford/friendly-broccoli/checks"
+	"github.com/tylermumford/localstatus/checks"
 )
 
 // Runs the program. This is called from the main package.

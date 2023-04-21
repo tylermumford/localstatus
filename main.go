@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/tylermumford/friendly-broccoli/localstatus"
+	"github.com/tylermumford/localstatus/app"
 )
 
 func main() {
-	err := localstatus.Run()
+	err := app.Run()
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)

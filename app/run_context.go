@@ -1,6 +1,6 @@
-package localstatus
+package app
 
-import "github.com/tylermumford/friendly-broccoli/checks"
+import "github.com/tylermumford/localstatus/checks"
 
 // Holds per-execution configuration.
 type RunContext struct {

@@ -1,4 +1,4 @@
-module github.com/tylermumford/friendly-broccoli
+module github.com/tylermumford/localstatus
 
 go 1.19
 
