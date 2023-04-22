@@ -18,13 +18,17 @@ func (c *CheckRegistry) Add(key string, check Check) {
 func (c *CheckRegistry) Get(key string) Check {
 	result := c.entries[key]
 	if result == nil {
-		panic("get check with key '" + key + "': not found")
+		return CheckConst{
+			Okay:  false,
+			Label: "(check '" + key + "' not found)",
+		}
 	}
 	return result
 }
 
 func (c *CheckRegistry) AddAllChecks() {
-	c.Add("http.ok", CheckHttpOk{})
 	c.Add("env", CheckEnv{})
+	c.Add("git.branch", CheckGitBranch{})
+	c.Add("http.ok", CheckHttpOk{})
 	c.Add("tcp.open", CheckTcpOpen{})
 }
