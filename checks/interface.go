@@ -41,6 +41,10 @@ func (p Params) GetStrings(key string) []string {
 	return result
 }
 
+func (p Params) GetBool(key string) bool {
+	return p[key].(bool)
+}
+
 // ------------
 
 // A CheckResult reports what happened when a Check was run.
