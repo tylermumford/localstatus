@@ -1,3 +1,12 @@
+/*
+Package checks contains the individual checks (actions)
+which can be performed by LocalStatus.
+Each check implements the [Check] interface,
+and each check is referenced in the [CheckRegistry] type.
+
+(I plan to add support for custom script-based checks
+once I figure out how I want to deal with shells across platforms.)
+*/
 package checks
 
 // Implements something that can be checked in the local dev environment.
@@ -9,6 +18,14 @@ type Check interface {
 
 // ------------
 
+// Params hold(s) information needed
+// to customize a Check's behavior.
+// The Params come straight from the parsed TOML,
+// and they are typed as interface{}.
+//
+// Helper methods such as [GetString]
+// are a convenient way to get the data
+// into more useful types.
 type Params map[string]any
 
 func (p Params) GetString(key string) string {
@@ -24,9 +41,9 @@ func (p Params) GetStrings(key string) []string {
 	return result
 }
 
-// -------------
+// ------------
 
-// Reports what happened when a Check was run.
+// A CheckResult reports what happened when a Check was run.
 type CheckResult interface {
 	IsOkay() bool
 	Label() string

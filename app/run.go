@@ -43,6 +43,7 @@ func Run() error {
 
 	// 4. Run the specified checks
 	fmt.Printf("    %d checks to run...\n", len(ctx.Config.Checks))
+	fails := 0
 	for v := range ctx.Config.Checks {
 		result := runCheckDefinition(ctx.Config.Checks[v], &ctx)
 
@@ -51,6 +52,7 @@ func Run() error {
 		if !result.IsOkay() {
 			prefix = "! "
 			message = result.Label()
+			fails += 1
 		} else {
 			prefix = "OK"
 			message = result.Label()
@@ -59,6 +61,9 @@ func Run() error {
 		fmt.Printf("%s  %s\n", prefix, message)
 	}
 
+	if fails > 0 {
+		return fmt.Errorf("%d checks failed", fails)
+	}
 	return nil
 }
 
