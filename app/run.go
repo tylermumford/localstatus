@@ -8,6 +8,7 @@ import (
 	"path"
 
 	"github.com/BurntSushi/toml"
+	"github.com/fatih/color"
 	"github.com/tylermumford/localstatus/checks"
 )
 
@@ -50,11 +51,11 @@ func Run() error {
 		var prefix string
 		var message string
 		if !result.IsOkay() {
-			prefix = "! "
+			prefix = color.RedString("! ")
 			message = result.Label()
 			fails += 1
 		} else {
-			prefix = "OK"
+			prefix = color.GreenString("OK")
 			message = result.Label()
 		}
 
