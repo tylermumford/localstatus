@@ -15,8 +15,8 @@ check = "env"
 Passes if all the given environment variables are set.
 Variables set to an empty string DO count as being set.
 
-variables_required: An array of strings,
-each with an env var name.
+  - variables_required: An array of strings,
+    each with an env var name.
 
 ----------
 
@@ -38,9 +38,9 @@ Git must already be on PATH.
 
 check = "http.ok"
 
-Passes if the URL responds with 200 OK.
+Passes if the URL responds with 200 OK. Uses the GET method.
 
-url: A string containing the URL to send an HTTP/HTTPS request to.
+  - url: A string containing the URL to send an HTTP/HTTPS request to.
 
 ----------
 
@@ -51,5 +51,5 @@ Useful for checking many types of services,
 such as databases and caches.
 There is a 9 second timeout.
 
-address: A string containing the host:port combo to connect to.
-label: A string with a descriptive label. Optional.
+  - address: A string containing the host:port combo to connect to.
+  - label: A string with a descriptive label. Optional.

@@ -38,6 +38,8 @@ func main() {
 
 	regex := regexp.MustCompile(`^check = "(\S+)"`)
 	count := 0
+	all := []string{}
+	const fmode = 0666
 
 	for _, t := range computed.Types {
 		if !strings.HasPrefix(t.Doc, "check =") {
@@ -49,14 +51,21 @@ func main() {
 
 		// Write the doc comments to their own files
 
-		const mode = 0666
-		err := os.WriteFile(name+".md", []byte(t.Doc), mode)
+		err := os.WriteFile(name+".md", []byte(t.Doc), fmode)
 		if err != nil {
 			fmt.Printf("writing docs for "+name+": %s\n", err)
 			continue
 		}
 		count += 1
+
+		all = append(all, t.Doc)
 	}
+
+	// Write them all to a single file
+
+	allJoined := strings.Join(all, "\n----------\n\n")
+	os.WriteFile("all.md", []byte(allJoined), fmode)
+	count++
 
 	fmt.Printf("generated %d docs\n", count)
 }
