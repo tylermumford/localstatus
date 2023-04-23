@@ -1,5 +1,7 @@
 # LocalStatus
 
+[Docs here](./docs/all.md)
+
 Automatically monitors the important parts of your local development environment. Not in a fancy way.
 Just in a fifteen-year-old-Honda-Civic kind of way.
 
