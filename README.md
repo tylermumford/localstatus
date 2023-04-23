@@ -67,15 +67,6 @@ in the cloud. If your system doesn't work locally, then you can't do anything wh
 goes down, or your cloud provider goes down, or your IT department can't get you access to something
 right away. In other words, local development is a "cause" I believe in.
 
-## Contributing
-
-To show your interest, you can star the repository or send me a message via Mastodon.
-
-I am open to bug reports in GitHub Issues. Please use Discussions for feature requests and general
-discussions/questions/support. I am open to PRs. I'm not looking for other contributors right now.
-
-To help "pay for" this project, consider purchasing the macOS/Windows companion apps. (Eventually. They don't exist yet.)
-
 ## Disclosure
 
 I'm creating this project because I think it needs to exist. I use something similar at work already.
