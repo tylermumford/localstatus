@@ -27,6 +27,7 @@ func (c *CheckRegistry) Get(key string) Check {
 }
 
 func (c *CheckRegistry) AddAllChecks() {
+	c.Add("const", CheckConst{})
 	c.Add("env", CheckEnv{})
 	c.Add("git.branch", CheckGitBranch{})
 	c.Add("http.ok", CheckHttpOk{})
