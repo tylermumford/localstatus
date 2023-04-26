@@ -41,11 +41,13 @@ func (g CheckGitBranch) Run(p Params) CheckResult {
 	}
 
 	fetch := exec.Command("git", "fetch")
+	fetch.Dir = dir
 	fetch.Start() // Intentonally ignoring any fetch errors
 	fetch.Wait()
 
 	compare := "HEAD.." + base
 	cmd := exec.Command("git", "log", "--oneline", compare)
+	cmd.Dir = dir
 
 	comparison, err := cmd.Output()
 	if err != nil {
