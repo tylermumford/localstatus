@@ -21,21 +21,63 @@ see the documentation of the checks package.
 
 If any checks fail,
 the command's exit code will be nonzero.
-There are no command line options at this time.
+
+To have the program run itself repeatedly
+(every 3 minutes),
+run the program with the `--watch` flag.
 */
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
+	"time"
 
+	"github.com/inancgumus/screen"
 	"github.com/tylermumford/localstatus/app"
 )
 
 func main() {
-	err := app.Run()
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
+	mainFlags()
+
+	if !*isWatch {
+		err := app.Run()
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+	} else {
+		for {
+			screen.Clear()
+			screen.MoveTopLeft()
+			fmt.Println("Running every 3 minutes...")
+			fmt.Println("(press Enter to re-run immmediately; press Ctrl-C to stop)")
+
+			err := app.Run()
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+
+			blockUntilNextLoop()
+			// Yes, Ctrl-C is the only way to exit
+		}
 	}
+}
+
+func blockUntilNextLoop() {
+	unblock := make(chan bool)
+
+	go func() {
+		time.Sleep(3 * time.Minute)
+		unblock <- true
+	}()
+
+	go func() {
+		s := bufio.NewScanner(os.Stdin)
+		s.Scan()
+		unblock <- true
+	}()
+
+	<-unblock
 }
