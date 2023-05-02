@@ -48,8 +48,13 @@ checks = [
 
 ## Installing
 
-I intend to make this easy to install with Scoop and Homebrew, but it's not quite ready.
-For now, download source code and run `go install`.
+`brew install tylermumford/brew/localstatus`
+
+Or, download the source and run `go install`
+
+([Scoop] support will be added, too, but it's not ready yet.)
+
+[Scoop]: https://scoop.sh
 
 ## Motivation / Rant
 
