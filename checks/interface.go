@@ -32,8 +32,14 @@ func (p Params) GetString(key string) string {
 	return p[key].(string)
 }
 
+// Returns an empty slice if key is not found.
 func (p Params) GetStrings(key string) []string {
 	result := []string{}
+
+	if p[key] == nil {
+		return result
+	}
+
 	given := p[key].([]any)
 	for i := range given {
 		result = append(result, given[i].(string))
