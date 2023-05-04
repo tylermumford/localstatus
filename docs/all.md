@@ -72,6 +72,16 @@ Passes if the URL responds with 200 OK. Uses the GET method.
 
 ----------
 
+check = "npm.install"
+
+Passes if npm dependencies are installed.
+This is implemented with the `npm ls` command,
+so npm must be installed and on the PATH already.
+
+  - package: A string with the path to a package.json file.
+
+----------
+
 check = "tcp.open"
 
 Passes if a TCP connection can be opened.

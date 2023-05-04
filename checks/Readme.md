@@ -4,7 +4,7 @@ This Go package is for all of the checks that localstatus can perform.
 Each check is named with a loose hierarchy.
 
 Checks conform to the `Check` interface, which is defined in
-the `check.go` file.
+the `interface.go` file.
 
 Eventually, there will be many checks.
 
