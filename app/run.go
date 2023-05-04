@@ -5,7 +5,7 @@ package app
 import (
 	"fmt"
 	"os"
-	"path"
+	"path/filepath"
 
 	"github.com/BurntSushi/toml"
 	"github.com/fatih/color"
@@ -21,7 +21,7 @@ func Run() error {
 		return fmt.Errorf("cannot determine home dir: %w", err)
 	}
 
-	tomlPath := path.Join(home, ".config", "localstatus.toml")
+	tomlPath := filepath.Join(home, ".config", "localstatus.toml")
 	ctx := RunContext{
 		TomlPath: tomlPath, // [1]
 	}

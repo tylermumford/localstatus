@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path"
+	"path/filepath"
 )
 
 /*
@@ -26,7 +26,7 @@ type CheckGitBranch struct{}
 
 func (g CheckGitBranch) Run(p Params) CheckResult {
 	dir := p.GetString("dir")
-	dirEnd := path.Base(dir)
+	dirEnd := filepath.Base(dir)
 	base := p.GetString("base")
 
 	_, err := os.Lstat(dir)
@@ -34,7 +34,7 @@ func (g CheckGitBranch) Run(p Params) CheckResult {
 		return newBasicResult(false, dir+" does not exist")
 	}
 
-	gitDir := path.Join(dir, ".git")
+	gitDir := filepath.Join(dir, ".git")
 	_, err = os.Lstat(gitDir)
 	if os.IsNotExist(err) {
 		return newBasicResult(false, dir+" is not a Git repo")
