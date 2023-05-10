@@ -29,10 +29,8 @@ run the program with the `--watch` flag.
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/inancgumus/screen"
 	"github.com/tylermumford/localstatus/app"
@@ -48,6 +46,7 @@ func main() {
 			os.Exit(1)
 		}
 	} else {
+		watch := app.Watch{}
 		for {
 			screen.Clear()
 			screen.MoveTopLeft()
@@ -59,25 +58,8 @@ func main() {
 				fmt.Println(err.Error())
 			}
 
-			blockUntilNextLoop()
+			watch.Block()
 			// Yes, Ctrl-C is the only way to exit
 		}
 	}
-}
-
-func blockUntilNextLoop() {
-	unblock := make(chan bool)
-
-	go func() {
-		time.Sleep(3 * time.Minute)
-		unblock <- true
-	}()
-
-	go func() {
-		s := bufio.NewScanner(os.Stdin)
-		s.Scan()
-		unblock <- true
-	}()
-
-	<-unblock
 }
