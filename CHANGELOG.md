@@ -6,6 +6,7 @@ The project strives to follow [Semantic Versioning](https://semver.org/#semantic
 
 ## Unreleased
 
+- Fixed a memory leak
 - Added CHANGELOG.md
 
 ## 0.2-beta - 2023-05-04
