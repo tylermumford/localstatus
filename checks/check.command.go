@@ -23,6 +23,7 @@ but arguments are kept intact (quoted) when passed to the program.
     If the program is on your PATH, it will be found by its name alone.
   - args: An array of strings containing any arguments to pass.
     Optional.
+  - dir: TODO.
 */
 type CheckCommand struct{}
 
