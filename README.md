@@ -10,40 +10,93 @@ Just in a fifteen-year-old-Honda-Civic kind of way.
 * Keep an eye on Git repos
 * and more
 
-This is a work in progress. Consider it version 0.1. I'm hoping for thoughtful feedback and,
+This is a work in progress. I use it, but I'd definitely still call it a beta.
+I'm hoping for thoughtful feedback and,
 of course, GitHub stars. 😅 External validation for the win!
 
-## Example (Aspirational)
+## Example
 
-The real output and config are similar to this, but not exactly the same. I'm still
-figuring out the design.
+After you create `~/.config/localstatus.toml` and define your checks,
+you can run `localstatus` to perform them.
+With no arguments, it runs them all once:
 
 ```
-$ localstatus
+/Users/tyler/dev/localstatus: localstatus
     6 checks to run...
-OK  MySQL
-OK  Redis
-OK  API server
-!   Env vars
-OK  VPN connection
-( exit code 1 )
-
-$ localstatus --watch
-    6 checks to run, every 3 minutes...
-    (Enter to re-run, Ctrl-C to stop)
+!   zola check: exit status 101
+OK  /Users/tyler/dev/minesweeper/package.json dependencies
+OK  https://github.com
+OK  Personal website HTTPS: tylermumford.com:443
+OK  localstatus: Up to date with origin/main
+OK  /Users/tyler/.config/localstatus.toml exists (526 bytes)
+1 checks failed
 ```
 
-The configuration looks like this:
+Or, with the `--watch` flag, it keeps going.
+I like to keep a terminal window open all day to keep an eye on everything.
+
+![Screenshot of a terminal window. The first two lines say "Running every 3 minutes... (press Enter to re-run immmediately; press Ctrl-C to stop)". The rest is the same as the snippet above.](screenshots/001.png)
+
+## Configuring the checks
+
+LocalStatus is configured with the [TOML format].
+TOML is widely supported and has nice features,
+like comments and flexible string literals.
+
+[TOML format]: https://toml.io/en/
+
+Right now, LocalStatus only looks for configuration at the hard-coded path of
+`~/.config/localstatus.toml`.
+This will change and become more flexible in the future.
+
+All of the available [checks are documented here](./docs/all.md).
+
+The config looks like this:
 
 ```toml
 # ~/.config/localstatus.toml
 checks = [
-    {check = "tcp.open", address = "localhost:3306", label = "MySQL"},
-    {check = "tcp.open", address = "localhost:6379", label = "Redis"},
-    {check = "http.ok", url = "http://localhost:9000/api/ping", label = "API server"},
-    {check = "env", variables_required = ["API_KEY", "ENVIRONMENT_MODE"]},
-    {check = "http.ok", url = "https://corp.private.example.com", label = "VPN connection"},
+    {check = "command", program = "zola", args = ["check"]},
+    {check = "npm.install", package = "/Users/tyler/dev/minesweeper/package.json"},
+    {check = "http.ok", url = "https://github.com"},
+    {check = "tcp.open", address = "tylermumford.com:443", label = "Personal website HTTPS"},
+    {check = "git.branch", dir = "/Users/tyler/dev/localstatus", base = "origin/main"},
+    {check = "file.exists", path = "/Users/tyler/.config/localstatus.toml"}
 ]
+```
+
+The snippet above is using TOML's inline table syntax to reduce the number of lines.
+The following snippet uses TOML's "array of tables" syntax to have shorter lines.
+Both snippets are equivalent.
+
+```toml
+[[checks]]
+check = "command"
+program = "zola"
+args = ["check"]
+dir  = "/Users/tyler/dev/tylermumford.github.io"
+
+[[checks]]
+check = "npm.install"
+package = "/Users/tyler/dev/minesweeper/package.json"
+
+[[checks]]
+check = "http.ok"
+url = "https://github.com"
+
+[[checks]]
+check = "tcp.open"
+address = "tylermumford.com:443"
+label = "Personal website HTTPS"
+
+[[checks]]
+check = "git.branch"
+dir = "/Users/tyler/dev/localstatus"
+base = "origin/main"
+
+[[checks]]
+check = "file.exists"
+path = "/Users/tyler/.config/localstatus.toml"
 ```
 
 ## Installing
