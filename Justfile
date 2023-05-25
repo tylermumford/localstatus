@@ -15,7 +15,7 @@ docs:
 
 release VERSION: docs build-all _no-unstaged-changes
 	# TODO: Automatically get the notes from the changelog file
-	gh release create "{{VERSION}}" --draft --notes "See CHANGELOG file for notes" --prerelease {{cross}}/*
+	gh release create "{{VERSION}}" --notes "See CHANGELOG file for notes" --prerelease {{cross}}/*
 
 
 cross := 'cross-platform-builds'
