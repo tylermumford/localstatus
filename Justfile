@@ -8,11 +8,13 @@ test:
 	go test ./checks
 
 
+# Generate documentation files
 docs:
 	# Note: The generated docs should be committed.
 	cd docs && go generate
 
 
+# Publish a release on GitHub (example: v0.7-beta)
 release VERSION: ready
 	# TODO: Automatically get the notes from the changelog file
 	gh release create "{{VERSION}}" --notes "See CHANGELOG file for notes" --prerelease {{cross}}/*
@@ -25,6 +27,7 @@ ready: docs build-all _no-unstaged-changes
 
 cross := 'cross-platform-builds'
 
+# Build for multiple platforms at once
 build-all:
 	rm -rf {{cross}}
 	mkdir -p {{cross}}
