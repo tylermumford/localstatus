@@ -6,7 +6,7 @@ The project strives to follow [Semantic Versioning](https://semver.org/#semantic
 
 ## Unreleased
 
-- (nothing yet)
+- Added the "dir" parameter for the `command` check
 
 ## 0.2.2-beta - 2023-05-24
 

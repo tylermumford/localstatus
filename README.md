@@ -74,9 +74,7 @@ Both snippets are equivalent.
 check = "command"
 program = "zola"
 args = ["check"]
-#dir  = "/Users/tyler/dev/tylermumford.github.io"
-# The "dir" property is much-needed, but not supported yet
-# whoops
+dir  = "/Users/tyler/dev/tylermumford.github.io"
 
 [[checks]]
 check = "npm.install"
