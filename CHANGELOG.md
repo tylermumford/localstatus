@@ -6,6 +6,10 @@ The project strives to follow [Semantic Versioning](https://semver.org/#semantic
 
 ## Unreleased
 
+- (nothing yet)
+
+## 0.2.2-beta - 2023-05-24
+
 - Fixed #5 (tcp.open: program crashes without "label" parameter)
 
 ## 0.2.1-beta - 2023-05-24
