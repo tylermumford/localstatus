@@ -127,6 +127,19 @@ in the cloud. If your system doesn't work locally, then you can't do anything wh
 goes down, or your cloud provider goes down, or your IT department can't get you access to something
 right away. In other words, local development is a "cause" I believe in.
 
+## Relevant projects
+
+If you think LocalStatus is interesting,
+you might also like these projects:
+
+* [Just] command runner
+* [Uptime Kuma] self-hosted uptime monitoring
+* [Earthly] opinionated build automation
+
+[Just]: https://github.com/casey/just
+[Uptime Kuma]: https://github.com/louislam/uptime-kuma
+[Earthly]: https://github.com/earthly/earthly
+
 ## Disclosure
 
 I'm creating this project because I think it needs to exist. I use something similar at work already.
