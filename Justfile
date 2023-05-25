@@ -2,6 +2,12 @@ run:
 	go run .
 
 
+test:
+	go test          # none here currently
+	go test ./app    # none here currently
+	go test ./checks
+
+
 docs:
 	# Note: The generated docs should be committed.
 	cd docs && go generate

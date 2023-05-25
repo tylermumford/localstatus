@@ -28,7 +28,11 @@ type Check interface {
 // into more useful types.
 type Params map[string]any
 
+// Returns an empty string if key not found.
 func (p Params) GetString(key string) string {
+	if p[key] == nil {
+		return ""
+	}
 	return p[key].(string)
 }
 
