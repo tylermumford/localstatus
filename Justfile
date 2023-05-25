@@ -13,9 +13,14 @@ docs:
 	cd docs && go generate
 
 
-release VERSION: docs build-all _no-unstaged-changes
+release VERSION: ready
 	# TODO: Automatically get the notes from the changelog file
 	gh release create "{{VERSION}}" --notes "See CHANGELOG file for notes" --prerelease {{cross}}/*
+
+
+# Check to see if you're ready to make a release
+ready: docs build-all _no-unstaged-changes
+	@echo Ready to release
 
 
 cross := 'cross-platform-builds'
