@@ -17,7 +17,7 @@ docs:
 # Publish a release on GitHub (example: v0.7-beta)
 release VERSION: ready
 	# TODO: Automatically get the notes from the changelog file
-	gh release create "{{VERSION}}" --notes "See CHANGELOG file for notes" --prerelease {{cross}}/*
+	gh release create "{{VERSION}}" --notes "See CHANGELOG file for notes" {{cross}}/*
 
 
 # Check to see if you're ready to make a release
