@@ -30,6 +30,7 @@ func (c *CheckRegistry) AddAllChecks() {
 	c.Add("command", CheckCommand{})
 	c.Add("const", CheckConst{})
 	c.Add("env", CheckEnv{})
+	c.Add("file.contains", CheckFileContains{})
 	c.Add("file.exists", CheckFileExists{})
 	c.Add("git.branch", CheckGitBranch{})
 	c.Add("http.ok", CheckHttpOk{})

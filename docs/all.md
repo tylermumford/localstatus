@@ -41,6 +41,16 @@ Variables set to an empty string DO count as being set.
 
 ----------
 
+check = "file.contains"
+
+Passes if the given file contains
+a literal string.
+
+  - path: A string containing the path to check.
+  - string: A string containing the character sequence to look for.
+
+----------
+
 check = "file.exists"
 
 Passes if the given file exists.

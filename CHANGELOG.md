@@ -6,7 +6,7 @@ The project strives to follow [Semantic Versioning](https://semver.org/#semantic
 
 ## Unreleased
 
-- nothing yet
+- Added check: file.contains
 
 ## 0.3 - 2023-06-13
 
